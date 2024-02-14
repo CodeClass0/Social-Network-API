@@ -14,6 +14,10 @@ const reactionSchema = new Schema(
             maxLength: 280
         },
         username: {
+            type: String,
+            required: true
+        },
+        createdAt: {
             type: Date,
             default: Date.now(),
             get: date => {
@@ -42,7 +46,7 @@ const thoughtSchema = new Schema(
             type: String,
             required: true
         },
-        reactions: [reactionSchema]
+        reactions: [reactionSchema],
     },
     {
         toJSON: {

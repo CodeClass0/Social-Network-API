@@ -1,4 +1,5 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
+
 
 const userSchema = new Schema(
     {
@@ -15,17 +16,18 @@ const userSchema = new Schema(
             // match:["","email address invalid"]
         },
         thoughts: [{
-            type: Schema.Types.ObjectId,
-            ref: "Thought"
-        }],
+                type: Schema.Types.ObjectId,
+                ref: "Thought",
+                required: false
+            }],
         friends: [{
             type: Schema.Types.ObjectId,
-            ref: "User"
+            ref: "User",
+            required: false
         }]
     },
     {
         toJSON: {
-            getters: true,
             virtuals: true,
         },
         id: false,
@@ -36,8 +38,9 @@ userSchema
     .virtual("friendCount")
     .get(function () {
         return this.friends.length;
-    })
+    });
 
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;
+
