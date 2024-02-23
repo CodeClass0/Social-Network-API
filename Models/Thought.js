@@ -24,6 +24,11 @@ const reactionSchema = new Schema(
                 moment(date).format('MMMM DD YYYY, hh:mm a');
             }
         }
+    },
+    {
+        toJSON: {
+            getters:true
+        }
     }
 );
 
@@ -53,7 +58,7 @@ const thoughtSchema = new Schema(
             getters: true,
             virtuals: true,
         },
-        id: false,
+        id: false
     }
 );
 
@@ -63,6 +68,7 @@ thoughtSchema
         this.reactions.length;
     })
 
-const Thought = model('thought', thoughtSchema);
+const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;
+
